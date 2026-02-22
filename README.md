@@ -1,5 +1,6 @@
+<img width="1370" height="410" alt="87863963861" src="https://github.com/user-attachments/assets/1e44c3b9-edbd-469d-9743-caae26eb087e" />
+
 # Transfer Learning for Cats vs Dogs Classification
-<img width="739" height="269" alt="image" src="https://github.com/user-attachments/assets/ac22d6e1-1fc1-4034-8ec5-c0950564e388" />
 
 ## Overview
 
