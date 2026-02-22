@@ -1,10 +1,12 @@
 # Transfer Learning for Cats vs Dogs Classification
+<img width="739" height="269" alt="image" src="https://github.com/user-attachments/assets/ac22d6e1-1fc1-4034-8ec5-c0950564e388" />
 
 ## Overview
 
 This project implements transfer learning for binary image classification using a pre-trained MobileNetV2 model. The approach involves two training stages: feature extraction with a frozen base model, followed by fine-tuning of selected layers with a reduced learning rate.
 
 ### Motivation for Transfer Learning
+<img width="939" height="388" alt="image" src="https://github.com/user-attachments/assets/23d548ef-b44b-4c04-9111-a78001478346" />
 
 Transfer learning addresses the challenge of limited training data by leveraging knowledge learned from large-scale datasets. Rather than training a deep neural network from scratch, which requires substantial computational resources and large amounts of labeled data, transfer learning reuses pre-trained models. MobileNetV2, trained on ImageNet with 1.4 million images across 1,000 classes, has already learned robust low-level and mid-level features (edges, textures, shapes) that are transferable to the cats vs dogs classification task. This approach significantly reduces training time and improves generalization with limited data.
 
@@ -17,6 +19,7 @@ The project uses the `cats_vs_dogs` dataset from TensorFlow Datasets. After remo
 All images are resized to 224×224 pixels to match the MobileNetV2 input requirements.
 
 ## Model Architecture
+<img width="982" height="193" alt="image" src="https://github.com/user-attachments/assets/e34b5f97-bf4a-48c5-9719-ff983f107d5e" />
 
 ### Base Model
 MobileNetV2 pre-trained on ImageNet serves as the feature extractor. The original classification head is removed (`include_top=False`), retaining only the convolutional base with approximately 3.5 million parameters.
