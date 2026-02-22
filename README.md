@@ -1,47 +1,115 @@
-# Cats vs Dogs Transfer Learning Project
+# 🚀 MobileNetV2 Transfer Learning — Cats vs Dogs Classification
 
-This repository showcases how to adapt a **pre‑trained convolutional neural network (CNN)** to classify images of cats and dogs using transfer learning. The model leverages **MobileNetV2**, trained on ImageNet, and fine‑tunes it on the *cats_vs_dogs* dataset.
-
-## Files
-
-- `final_assignment.ipynb` – An English Jupyter notebook that implements the entire workflow: data loading, preprocessing and augmentation, model creation, feature‑extraction training, fine‑tuning, evaluation, and model saving. The notebook uses TensorFlow and TensorFlow Datasets.
-- `project_documentation_en.md` – A detailed English documentation file explaining the dataset, model architecture, training procedure and methodology.
-- `project_documentation.md` – Arabic documentation (useful if you need the project in Arabic; otherwise optional).
-
-## Requirements
-
-- **Python** 3.10 or newer
-- **TensorFlow** 2.x
-- **TensorFlow Datasets**
-- **Matplotlib** (for plotting)
-
-To install the necessary libraries on your local machine, run:
-
-```bash
-pip install tensorflow tensorflow-datasets matplotlib
-```
-
-On Google Colab these dependencies are already available.
-
-## Usage
-
-1. Clone or download this repository.
-2. Open `final_assignment.ipynb` in Jupyter Notebook or upload it to Google Colab.
-3. Run all cells in order. The notebook will:
-   - Download and load the *cats_vs_dogs* dataset (23,262 valid training examples after dropping corrupted images).
-   - Resize images to `224×224`, apply data augmentation and prepare training/validation splits.
-   - Load MobileNetV2 without its top and freeze its weights.
-   - Add a new classification head and train it on the dataset (feature extraction).
-   - Unfreeze some of the higher layers and fine‑tune the network with a low learning rate.
-   - Plot training and validation accuracy, evaluate the model and save the fine‑tuned model as `cats_dogs_finetuned.h5`.
-
-Running the notebook for the first time will automatically download the dataset via TensorFlow Datasets. Subsequent runs will use the cached copy.
-
-## References
-
-- Keras guide on transfer learning and fine‑tuning: https://keras.io/guides/transfer_learning/
-- TensorFlow Datasets catalog entry for *cats_vs_dogs*: https://www.tensorflow.org/datasets/catalog/cats_vs_dogs
+A Deep Learning project demonstrating how to **modify and fine-tune a pre-trained CNN** for a new image classification task using **TensorFlow & Keras**.
 
 ---
 
-Feel free to modify the notebook to experiment with different pre‑trained models (e.g. ResNet50, EfficientNetB0) or different fine‑tuning depths. Contributions are welcome!
+## 📌 Project Overview
+
+This project implements **Transfer Learning and Fine-Tuning** using the pre-trained **MobileNetV2** architecture (trained on ImageNet) to solve a binary image classification problem:
+
+> 🐱 Cat vs 🐶 Dog Classification
+
+Instead of training a CNN from scratch, we:
+
+1. Load a pre-trained convolutional base  
+2. Remove the original classification head  
+3. Add a new custom classifier  
+4. Train the new head (Feature Extraction stage)  
+5. Fine-tune upper layers with a lower learning rate  
+
+This approach significantly reduces training time and improves performance when working with limited datasets.
+
+---
+
+## 🧠 Key Concepts Covered
+
+- Transfer Learning  
+- Fine-Tuning  
+- Feature Extraction  
+- Data Augmentation  
+- Binary Image Classification  
+- Pre-trained CNN Models  
+- TensorFlow Datasets (TFDS)  
+
+---
+
+## 📂 Dataset
+
+Dataset used: **`cats_vs_dogs`** from TensorFlow Datasets.
+
+- ~23,000 labeled images  
+- 2 classes: `cat` and `dog`  
+- 80% training — 20% validation split  
+- Images resized to `224×224`  
+
+### Data Augmentation Techniques
+- Random horizontal flip  
+- Random rotation  
+- Random zoom  
+
+---
+
+## 🏗 Model Architecture
+
+### 🔹 Base Model
+- MobileNetV2  
+- Pre-trained on ImageNet  
+- `include_top=False`  
+- Frozen during initial training  
+
+### 🔹 Custom Classification Head
+- GlobalAveragePooling2D  
+- Dropout (0.2)  
+- Dense (1 neuron, Sigmoid activation)  
+
+---
+
+## 🔄 Training Strategy
+
+### Stage 1 — Feature Extraction
+- Base model frozen  
+- Train only new classifier  
+- Optimizer: Adam  
+- Learning rate: `1e-3`
+
+### Stage 2 — Fine-Tuning
+- Unfreeze top layers of MobileNetV2  
+- Lower learning rate (`1e-5`)  
+- Continue training to adapt high-level features  
+
+---
+
+## 📊 Results
+
+- High validation accuracy achieved using transfer learning  
+- Fine-tuning improved performance further  
+- Demonstrates efficiency of pre-trained models for real-world applications  
+
+> Note: Final accuracy may vary depending on hardware and training epochs.
+
+---
+
+## 🛠 Tech Stack
+
+- Python  
+- TensorFlow 2.x  
+- Keras  
+- TensorFlow Datasets  
+- Matplotlib  
+
+---
+
+## ▶️ How to Run
+
+### Option 1 — Google Colab (Recommended)
+
+1. Upload `final_assignment.ipynb`
+2. Enable GPU  
+   `Runtime → Change runtime type → GPU`
+3. Run all cells
+
+### Option 2 — Local Environment
+
+```bash
+pip install tensorflow tensorflow-datasets matplotlib
